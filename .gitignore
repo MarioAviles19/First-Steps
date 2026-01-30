@@ -1,0 +1,69 @@
+/.cache/
+/.cache*/
+.cache/
+
+# CMake specific files and directories
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+_deps/
+CMakeUserPresets.json
+
+# Common build directories (adjust as per your project convention)
+/build/
+/build*/
+/out/
+cmake-build-*/
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# IDE specific files (optional, can go in a global gitignore)
+# Visual Studio
+.vs/
+
+# CLion
+.idea/
+
+# VS Code
+.vscode/
+
+# QtCreator
+CMakeLists.txt.user*
+
+# macOS
+.DS_Store
+
+# Misc
+compile_commands.json
+Makefile
