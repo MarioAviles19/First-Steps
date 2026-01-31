@@ -70,8 +70,6 @@ void render(GLFWwindow* window, unsigned int VAO){
       float deltaTime = currentTime - lastTime;
       lastTime = currentTime;
       angle += deltaTime * uSpeed * 2.0f;
-      glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(gameWin->width),
-          static_cast<float>(gameWin->height), 0.0f, -1.0f, 1.0f);
       triangleShader.use();
       triangleShader.setMatrix4("projection", projection);
 
