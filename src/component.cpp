@@ -2,11 +2,13 @@
 #include "renderer.hpp"
 #include "resource_manager.hpp"
 #include <cassert>
+#include <iostream>
 
 Component::Component()
 {
-  auto renderer = ResourceManager::GetInstance().GetResource<Renderer>();
-
+  auto& resourceManager = ResourceManager::GetInstance();
+  auto renderer = resourceManager.GetResource<Renderer>();
+  std::cout << "Comp has value: " << renderer.has_value() << std::endl;
   assert(renderer.has_value() && "Resource not registered <Renderer>");
   this->renderer = renderer->get();
   this->updateHandle = this->renderer->addUpdater(this);

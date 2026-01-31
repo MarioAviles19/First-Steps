@@ -37,7 +37,7 @@ class ResourceManager{
 
         assert(!existing.has_value());
 
-        ResourceKey key{typeid(T), std::move(tag)};
+        ResourceKey key{std::type_index(typeid(T)), std::move(tag)};
         this->resources[key] = resource;
 
       }
@@ -58,7 +58,7 @@ class ResourceManager{
       }
 
     void operator=(const ResourceManager&) = delete;
-
+    ResourceManager(const ResourceManager&) = delete;
   private:
     std::unordered_map<ResourceKey, std::shared_ptr<void>, ResourceKeyHash> resources;
 };

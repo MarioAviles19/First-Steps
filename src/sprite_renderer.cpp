@@ -1,4 +1,3 @@
-#include <glm/ext/matrix_transform.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "sprite_renderer.hpp"
 #include "component.hpp"
@@ -67,5 +66,9 @@ void SpriteRenderer::initRenderData()
 }
 void SpriteRenderer::update(float deltaTime)
 {
-
+  this->DrawSprite(glm::vec4(0.5f, 0.0f, 0.5f, 1.0f), this->position, glm::vec2(40.0f, 40.0f));
+}
+bool SpriteRenderer::getEnabled() const
+{
+  return this->enabled;
 }

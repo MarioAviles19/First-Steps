@@ -13,6 +13,8 @@ void Renderer::render()
   float lastTime = 0.0f; 
   while(!glfwWindowShouldClose(this->window->glfwWindow)){
     
+    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
     //input
     this->orthoProjection = glm::ortho(0.0f, static_cast<float>(this->window->width),
         static_cast<float>(this->window->height), 0.0f, -1.0f, 1.0f);

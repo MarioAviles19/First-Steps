@@ -5,6 +5,8 @@
 class SpriteRenderer : Component
 {
   public: 
+    bool enabled = true;
+    glm::vec2 position = glm::vec2(0.0f, 0.0f);
     SpriteRenderer(Shader &shader);
     ~SpriteRenderer();
 
@@ -14,5 +16,6 @@ class SpriteRenderer : Component
     Shader shader;
     unsigned int quadVAO;
     void update(float deltaTime) override;
+    bool getEnabled() const override;
     void initRenderData();
 };

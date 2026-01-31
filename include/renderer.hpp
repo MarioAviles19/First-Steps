@@ -6,9 +6,9 @@
 #include <vector>
 
 struct IRenderUpdater{
-  virtual ~IRenderUpdater();
+  virtual ~IRenderUpdater() = default;
   virtual void update(float deltaTime) = 0;
-  virtual bool getEnabled();
+  virtual bool getEnabled() const = 0;
 };
 struct UpdaterHandle{
   uint32_t index;
