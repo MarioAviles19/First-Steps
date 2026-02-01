@@ -11,7 +11,7 @@ namespace utils
   template <typename T>
     class GenerationalVector{
       public:
-        GenerationalVector();
+        GenerationalVector(){}
         GenVectorHandle add(T element){
           if(!this->freeList.empty())
           {
