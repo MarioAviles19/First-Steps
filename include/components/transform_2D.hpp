@@ -8,8 +8,9 @@ namespace game
     public:
       glm::vec2 position;
       glm::vec2 scale;
+      glm::vec2 size;
       float rotation;
-      glm::mat4 applyTransform();
+      glm::mat4 getModel();
       Transform2D(game::Entity& parent);
 
   };

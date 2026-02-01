@@ -2,6 +2,7 @@
 #include "sprite_renderer.hpp"
 #include "component.hpp"
 #include "shader.hpp"
+#include "entity.hpp"
 
 namespace game{
 
@@ -21,14 +22,7 @@ namespace game{
     //prepare transforms
     this->shader.use();
     this->shader.setMatrix4("projection", this->renderer->orthoProjection);
-    glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(position, 0.0f));
-    model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
-    model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-    model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
-
-    model = glm::scale(model, glm::vec3(size, 1.0f));
-
+    glm::mat4 model = this->entity.transform.getModel();
 
     this->shader.setMatrix4("model", model);
 
