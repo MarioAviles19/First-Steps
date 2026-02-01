@@ -1,7 +1,7 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/fwd.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "sprite_renderer.hpp"
+#include "components/sprite_renderer.hpp"
 #include "component.hpp"
 #include "shader.hpp"
 #include "entity.hpp"
