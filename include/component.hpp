@@ -1,13 +1,18 @@
 #pragma once
 #include "renderer.hpp"
-class Component : public IRenderUpdater 
-{
-  public:
-    bool enabled;
-    bool getEnabled() const override;
-    ~Component();
-  protected:
-    Component();
-    UpdaterHandle updateHandle;
-    Renderer* renderer;
+namespace game{
+  class Entity;
+  class Component : public game::IRenderUpdater 
+  {
+    public:
+      bool enabled;
+      Entity& entity;
+      bool getEnabled() const override;
+      void update(float deltaTime) override;
+      ~Component();
+    protected:
+      Component(game::Entity& parent);
+      UpdaterHandle updateHandle;
+      Renderer* renderer;
+  };
 };
