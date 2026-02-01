@@ -19,6 +19,8 @@ add_executable(FirstSteps main.cpp
   src/window.cpp
   src/renderer.cpp
   src/component.cpp
+  src/entity.cpp
+  src/transform_2D.cpp
 )
 
 set_property(TARGET FirstSteps PROPERTY CXX_STANDARD 23)
