@@ -29,8 +29,7 @@ namespace game{
     this->shader.use();
     //orthographic projection for 2D
     this->shader.setMatrix4("projection", this->renderer->orthoProjection);
-    glm::mat4 model = this->entity.transform.getModel();
-    model = glm::scale(model, glm::vec3(this->spriteSize, 1.0f));
+    glm::mat4 model = this->entity.transform.getModel(this->spriteSize);
     this->shader.setMatrix4("model", model);
 
     this->shader.setVector3f("spriteColor", glm::vec3(color.x, color.y, color.z));

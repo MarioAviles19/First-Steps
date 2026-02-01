@@ -5,7 +5,7 @@ namespace game{
   class Component : public game::IRenderUpdater 
   {
     public:
-      bool enabled;
+      bool enabled = true;
       Entity& entity;
       bool getEnabled() const override;
       void update(float deltaTime) override;

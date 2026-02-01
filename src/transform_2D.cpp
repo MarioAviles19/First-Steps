@@ -11,9 +11,21 @@ namespace game
   {
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(position, 0.0f));
-    model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+    model = glm::translate(model, glm::vec3(0.5f * scale.x, 0.5f * scale.y, 0.0f));
     model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-    model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+    model = glm::translate(model, glm::vec3(-0.5f * scale.x, -0.5f * scale.y, 0.0f));
+    model = glm::scale(model, glm::vec3(scale, 1.0f));
+
+    return model;
+  }
+  glm::mat4 Transform2D::getModel(glm::vec2 size)
+  {
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(position, 0.0f));
+    model = glm::translate(model, glm::vec3(0.5f * size.x * scale.x, 0.5f * size.y * scale.y, 0.0f));
+    model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+    model = glm::translate(model, glm::vec3(-0.5f * size.x * scale.x, -0.5f * size.y * scale.y, 0.0f));
+    model = glm::scale(model, glm::vec3(size, 1.0f));
     model = glm::scale(model, glm::vec3(scale, 1.0f));
 
     return model;
