@@ -1,5 +1,6 @@
 #pragma once
 #include "renderer.hpp"
+#include "util/generational_vector.hpp"
 namespace game{
   class Entity;
   class Component : public game::IRenderUpdater 
@@ -12,7 +13,7 @@ namespace game{
       ~Component();
     protected:
       Component(game::Entity& parent);
-      UpdaterHandle updateHandle;
+      utils::GenVectorHandle updateHandle;
       Renderer* renderer;
   };
 };
