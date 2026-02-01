@@ -42,8 +42,8 @@ namespace utils
           this->freeList.push_back(handle.index);
 
         }
-      private:
         std::vector<T> elements;
+      private:
         std::vector<uint32_t> generations;
         std::vector<uint32_t> freeList;
     };
