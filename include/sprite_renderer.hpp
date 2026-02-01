@@ -4,16 +4,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 namespace game
 {
-  class SpriteRenderer : Component
+  class SpriteRenderer : public Component
   {
     public: 
-      bool enabled = true;
-      glm::vec2 position = glm::vec2(0.0f, 0.0f);
-      SpriteRenderer(game::Entity& parent, Shader &shader);
+      glm::vec2 spriteSize = glm::vec2(10.0f, 10.0f);
+      SpriteRenderer(game::Entity& parent);
       ~SpriteRenderer();
 
-      void DrawSprite(glm::vec4 color, glm::vec2 position, 
-          glm::vec2 size = glm::vec2(10.0f, 10.0f), float rotation = 0.0f);
+      void DrawSprite(glm::vec4 color); 
+      void setShader(Shader& shader);
     private:
       Shader shader;
       unsigned int quadVAO;

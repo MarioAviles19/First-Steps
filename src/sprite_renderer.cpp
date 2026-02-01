@@ -1,3 +1,5 @@
+#include <glm/ext/matrix_transform.hpp>
+#include <glm/fwd.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "sprite_renderer.hpp"
 #include "component.hpp"
@@ -7,9 +9,13 @@
 namespace game{
 
 
-  SpriteRenderer::SpriteRenderer(game::Entity& parent, Shader &shader) : Component(parent), shader(shader)
+  SpriteRenderer::SpriteRenderer(game::Entity& parent) : Component(parent), shader(Shader("shaders/vertex.glsl", "shaders/fragment.glsl"))
   {
     this->initRenderData();
+  }
+  void SpriteRenderer::setShader(Shader& shader)
+  {
+    this->shader = shader;
   }
 
   SpriteRenderer::~SpriteRenderer() 
@@ -17,13 +23,14 @@ namespace game{
     glDeleteVertexArrays(1, &this->quadVAO);
   }
 
-  void SpriteRenderer::DrawSprite(glm::vec4 color, glm::vec2 position, glm::vec2 size, float rotation)
+  void SpriteRenderer::DrawSprite(glm::vec4 color)
   {
     //prepare transforms
     this->shader.use();
+    //orthographic projection for 2D
     this->shader.setMatrix4("projection", this->renderer->orthoProjection);
     glm::mat4 model = this->entity.transform.getModel();
-
+    model = glm::scale(model, glm::vec3(this->spriteSize, 1.0f));
     this->shader.setMatrix4("model", model);
 
     this->shader.setVector3f("spriteColor", glm::vec3(color.x, color.y, color.z));
@@ -62,7 +69,7 @@ namespace game{
   }
   void SpriteRenderer::update(float deltaTime)
   {
-    this->DrawSprite(glm::vec4(0.5f, 0.0f, 0.5f, 1.0f), this->position, glm::vec2(40.0f, 40.0f));
+    this->DrawSprite(glm::vec4(0.5f, 0.0f, 0.5f, 1.0f));
   }
   bool SpriteRenderer::getEnabled() const
   {
