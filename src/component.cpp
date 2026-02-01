@@ -21,3 +21,4 @@ Component::~Component()
     this->renderer->removeUpdater(this->updateHandle);
   }
 }
+bool Component::getEnabled() const {return this->enabled;}
