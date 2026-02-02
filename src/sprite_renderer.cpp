@@ -5,13 +5,18 @@
 #include "component.hpp"
 #include "shader.hpp"
 #include "entity.hpp"
-
+#include "resource_manager.hpp"
 namespace game{
 
 
   SpriteRenderer::SpriteRenderer(game::Entity& parent) : Component(parent), shader(Shader("shaders/vertex.glsl", "shaders/fragment.glsl"))
   {
     this->initRenderData();
+    auto& resourceManager = ResourceManager::GetInstance();
+    auto renderer = resourceManager.GetResource<Renderer>();
+    assert(renderer.has_value() && "Resource not registered <Renderer>");
+    this->renderer = renderer->get();
+    this->updateHandle = this->renderer->addUpdater([this](float dTime){this->DrawSprite(glm::vec4(0.5f, 0.0f, 0.5f, 1.0f));});
   }
   void SpriteRenderer::setShader(Shader& shader)
   {

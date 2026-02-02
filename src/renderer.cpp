@@ -8,7 +8,7 @@ namespace game{
   Renderer::Renderer(Window* window)
   {
     this->window = window;
-    this->updaters = utils::GenerationalVector<IRenderUpdater*>();
+    this->updaters = utils::GenerationalVector<renderLoopCallback>();
   }
 
   void Renderer::render(float deltaTime)
@@ -32,9 +32,9 @@ namespace game{
       {
         if(!this->updaters.elements.at(i)){continue;}
 
-        if(this->updaters.elements.at(i)->getEnabled())
+        if(this->updaters.elements.at(i))
         {
-          this->updaters.elements.at(i)->update(deltaTime);
+          this->updaters.elements[i](deltaTime);
         }
       }
 
@@ -42,7 +42,7 @@ namespace game{
       glfwPollEvents();
     }
   }
-  utils::GenVectorHandle Renderer::addUpdater(IRenderUpdater* updater)
+  utils::GenVectorHandle Renderer::addUpdater(renderLoopCallback updater)
   {
     return updaters.add(updater);
   }
