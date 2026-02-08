@@ -16,8 +16,8 @@ namespace game
     private:
       Shader shader;
       unsigned int quadVAO;
-      void update(float deltaTime) override;
-      bool getEnabled() const override;
+      void update(float deltaTime) ;
+      bool getEnabled() const ;
       void initRenderData();
   };
 }

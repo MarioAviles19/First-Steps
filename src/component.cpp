@@ -12,10 +12,8 @@ namespace game
   {
     auto& resourceManager = ResourceManager::GetInstance();
     auto renderer = resourceManager.GetResource<Renderer>();
-    std::cout << "Comp has value: " << renderer.has_value() << std::endl;
     assert(renderer.has_value() && "Resource not registered <Renderer>");
     this->renderer = renderer->get();
-    this->updateHandle = this->renderer->addUpdater(this);
   }
 
   Component::~Component()
@@ -25,7 +23,4 @@ namespace game
       this->renderer->removeUpdater(this->updateHandle);
     }
   }
-  bool Component::getEnabled() const {return this->enabled;}
-
-  void Component::update(float dTime){};
 }

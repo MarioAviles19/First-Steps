@@ -3,13 +3,14 @@
 #include "util/generational_vector.hpp"
 namespace game{
   class Entity;
-  class Component : public game::IRenderUpdater 
+  class Component 
   {
     public:
       bool enabled = true;
       Entity& entity;
-      bool getEnabled() const override;
-      void update(float deltaTime) override;
+      bool getEnabled() const {return this->enabled;}
+      void update(float deltaTime){}
+      void start() {};
       ~Component();
     protected:
       Component(game::Entity& parent);
