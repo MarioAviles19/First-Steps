@@ -1,6 +1,7 @@
 #pragma once
 #include "renderer.hpp"
 #include "util/generational_vector.hpp"
+#include "cereal/access.hpp"
 namespace game{
   class Entity;
   class Component 
@@ -16,5 +17,6 @@ namespace game{
       Component(game::Entity& parent);
       utils::GenVectorHandle updateHandle;
       Renderer* renderer;
+      friend class cereal::access;
   };
 };

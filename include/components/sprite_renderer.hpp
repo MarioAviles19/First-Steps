@@ -1,4 +1,5 @@
 #pragma once
+#include "cereal/cereal.hpp"
 #include "shader.hpp"
 #include "component.hpp"
 #include <glm/gtc/matrix_transform.hpp>
@@ -19,5 +20,10 @@ namespace game
       void update(float deltaTime) ;
       bool getEnabled() const ;
       void initRenderData();
+      template <class Archive>
+        void serialize(Archive& archive)
+        {
+          archive(CEREAL_NVP(spriteSize));
+        }
   };
 }
