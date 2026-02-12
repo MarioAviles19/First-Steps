@@ -13,12 +13,13 @@ namespace game
       glm::mat4 getModel();
       glm::mat4 getModel(glm::vec2 size);
       Transform2D(game::Entity& parent);
-    private:
       template <class Archive>
         void serialize(Archive& archive)
         {
           archive(CEREAL_NVP(position), CEREAL_NVP(scale), CEREAL_NVP(rotation));
         }
+
+   private:
 
   };
 }

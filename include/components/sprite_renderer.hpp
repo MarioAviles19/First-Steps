@@ -9,6 +9,7 @@ namespace game
   {
     public: 
       glm::vec2 spriteSize = glm::vec2(10.0f, 10.0f);
+      glm::vec4 spriteColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
       SpriteRenderer(game::Entity& parent);
       ~SpriteRenderer();
 
@@ -23,7 +24,7 @@ namespace game
       template <class Archive>
         void serialize(Archive& archive)
         {
-          archive(CEREAL_NVP(spriteSize));
+          archive(CEREAL_NVP(spriteSize), CEREAL_NVP(spriteColor));
         }
   };
 }
