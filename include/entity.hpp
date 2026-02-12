@@ -1,5 +1,7 @@
 #pragma once
 
+#include "cereal/access.hpp"
+#include "cereal/cereal.hpp"
 #include "component.hpp"
 #include "components/transform_2D.hpp"
 #include <memory>
@@ -21,7 +23,14 @@ namespace game{
           return static_cast<T&>(*ptr);
         }
 
+      //TODO: add removeComponent function
     private:
+      friend class cereal::access;
+      template <class Archive>
+        void serialize(Archive& archive)
+        {
+          archive(CEREAL_NVP(components), CEREAL_NVP(transform));
+        }
       std::vector<std::unique_ptr<game::Component>> components;
   };
 };
