@@ -1,14 +1,12 @@
 #pragma once
 
+#include "cereal/access.hpp"
+#include "cereal/cereal.hpp"
 #include "entity.hpp"
 #include "program.hpp"
 #include <string>
 namespace game
 {
-  struct SceneData{
-
-    std::vector<game::Entity> entities;
-  };
 
   class Scene
   {
@@ -22,7 +20,13 @@ namespace game
       bool enabled;
 
     private:
+      friend class cereal::access;
+      template<class Archive>
+        void serialize(Archive& archive)
+        {
+          archive(CEREAL_NVP(entities), CEREAL_NVP(id));
+        }
       game::Program* program;
-      game::SceneData data;
+      std::vector<game::Entity> entities;
   };
 }
