@@ -13,10 +13,11 @@ namespace game
   class Scene
   {
     public:
-      Scene(game::Program* program);
+      Scene(game::Program* program, std::string id);
       ~Scene();
       std::string id;
       void load(bool startEnabled = true);
+      void save(std::string path);
       void destroy();
       bool enabled;
 
