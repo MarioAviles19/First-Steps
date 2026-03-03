@@ -8,13 +8,14 @@ namespace game{
   {
     public:
       bool enabled = true;
-      Entity& entity;
+      Entity* entity;
       bool getEnabled() const {return this->enabled;}
       void update(float deltaTime){}
       void start() {};
+
       ~Component();
     protected:
-      Component(game::Entity& parent);
+      Component();
       utils::GenVectorHandle updateHandle;
       Renderer* renderer;
       friend class cereal::access;

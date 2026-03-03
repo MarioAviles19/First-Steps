@@ -10,12 +10,13 @@ namespace game
   Scene::Scene(game::Program* program, std::string id): program(program), id(id){
 
   }
+  Scene::~Scene(){}
   void Scene::save(std::string path)
   {
     std::ofstream filePath(path);
 
     cereal::JSONOutputArchive archive(filePath);
 
-    archive(this);
+    this->serialize<cereal::JSONOutputArchive>(archive);
   }
 }

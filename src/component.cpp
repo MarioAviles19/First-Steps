@@ -2,13 +2,12 @@
 #include "renderer.hpp"
 #include "resource_manager.hpp"
 #include <cassert>
-#include <iostream>
 
 namespace game
 {
 
 
-  Component::Component(game::Entity& parent) : entity(parent)
+  Component::Component()
   {
     auto& resourceManager = ResourceManager::GetInstance();
     auto renderer = resourceManager.GetResource<Renderer>();

@@ -2,7 +2,7 @@
 #include "component.hpp"
 namespace game
 {
-  Entity::Entity() : transform(*this){
-
+  Entity::Entity() : transform(){
+    transform->entity = this;
   }
   }

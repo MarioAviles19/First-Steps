@@ -4,7 +4,7 @@
 
 namespace game
 {
-  Transform2D::Transform2D(game::Entity& parent) : game::Component(parent){
+  Transform2D::Transform2D(game::Entity& parent) : game::Component(){
 
   };
   glm::mat4 Transform2D::getModel()

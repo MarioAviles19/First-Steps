@@ -5,7 +5,7 @@ project(FirstSteps)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(OpenGL REQUIRED)
-find_package(glfw3 REQUIRED)
+find_package(glfw3  REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
 include_directories(
@@ -21,6 +21,7 @@ add_executable(FirstSteps main.cpp
   src/component.cpp
   src/entity.cpp
   src/transform_2D.cpp
+  src/scene.cpp
 )
 
 set_property(TARGET FirstSteps PROPERTY CXX_STANDARD 23)

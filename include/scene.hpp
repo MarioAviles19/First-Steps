@@ -5,6 +5,9 @@
 #include "entity.hpp"
 #include "program.hpp"
 #include <string>
+#include "cereal/types/vector.hpp"
+#include "cereal/types/string.hpp"
+#include "cereal/types/memory.hpp"
 namespace game
 {
 
@@ -24,7 +27,7 @@ namespace game
       template<class Archive>
         void serialize(Archive& archive)
         {
-          archive(CEREAL_NVP(entities), CEREAL_NVP(id));
+          archive(CEREAL_NVP(id));
         }
       game::Program* program;
       std::vector<game::Entity> entities;

@@ -12,7 +12,7 @@ namespace game{
   class Entity
   {
     public:
-      game::Transform2D transform;
+      std::unique_ptr<game::Transform2D> transform;
       Entity();
 
       template <typename T>
@@ -22,15 +22,15 @@ namespace game{
           auto& ptr = components.emplace_back(std::make_unique<T>(*this));
           return static_cast<T&>(*ptr);
         }
+   template <class Archive>
+        void serialize(Archive& archive)
+        {
+          archive(CEREAL_NVP(*transform));
+        }
 
       //TODO: add removeComponent function
     private:
       friend class cereal::access;
-      template <class Archive>
-        void serialize(Archive& archive)
-        {
-          archive(CEREAL_NVP(components), CEREAL_NVP(transform));
-        }
-      std::vector<std::unique_ptr<game::Component>> components;
+         std::vector<std::unique_ptr<game::Component>> components;
   };
 };
