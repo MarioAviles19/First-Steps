@@ -22,8 +22,8 @@ namespace game {
       utils::GenVectorHandle addUpdater(renderLoopCallback updater);
       void removeUpdater(utils::GenVectorHandle handle);
       glm::mat4 orthoProjection;
-    private:
       Window* window;
+    private:
       utils::GenerationalVector<renderLoopCallback> updaters;
   };
 }

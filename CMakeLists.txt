@@ -22,6 +22,8 @@ add_executable(FirstSteps main.cpp
   src/entity.cpp
   src/transform_2D.cpp
   src/scene.cpp
+  src/program.cpp
+  src/input.cpp
 )
 
 set_property(TARGET FirstSteps PROPERTY CXX_STANDARD 23)

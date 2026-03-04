@@ -8,7 +8,7 @@ namespace game
   {
     public:
       void init();
-
+      void gameloop();
       std::shared_ptr<game::Renderer> renderer;
     private:
 
