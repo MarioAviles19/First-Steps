@@ -10,8 +10,8 @@ namespace game{
       bool enabled = true;
       Entity* entity;
       bool getEnabled() const {return this->enabled;}
-      void update(float deltaTime){}
-      void start() {};
+      virtual void update(float deltaTime){}
+      virtual void start() {}
 
       ~Component();
     protected:
