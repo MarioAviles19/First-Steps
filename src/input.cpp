@@ -3,6 +3,9 @@
 #include <cstring>
 namespace game
 {
+  bool Input::keys[1024] = {};
+  bool Input::keysUp[1024] = {};
+  bool Input::keysDown[1024] = {};
   bool Input::getKey(int key)
   {
     return keys[key];
@@ -30,7 +33,7 @@ namespace game
     else if (action == GLFW_RELEASE) 
     {
       keys[key] = false;
-      keysUp[key] = false;
+      keysUp[key] = true;
 
     }
   }
