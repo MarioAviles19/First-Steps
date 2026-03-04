@@ -9,7 +9,7 @@
 namespace game{
 
 
-  SpriteRenderer::SpriteRenderer(game::Entity& parent) : Component(), shader(Shader("shaders/vertex.glsl", "shaders/fragment.glsl"))
+  SpriteRenderer::SpriteRenderer() : Component(), shader(Shader("shaders/vertex.glsl", "shaders/fragment.glsl"))
   {
     this->initRenderData();
   }
@@ -29,6 +29,7 @@ namespace game{
     this->shader.use();
     //orthographic projection for 2D
     this->shader.setMatrix4("projection", renderer->orthoProjection);
+    assert(this->entity->transform);
     glm::mat4 model = this->entity->transform->getModel(this->spriteSize);
     this->shader.setMatrix4("model", model);
 
@@ -68,7 +69,9 @@ namespace game{
   }
   void SpriteRenderer::start()
   {
-    auto rendererRef = ResourceManager::GetInstance().GetResource<game::Renderer>();
+    auto& resourceManager = ResourceManager::GetInstance();
+    auto rendererRef = resourceManager.GetResource<game::Renderer>();
+    assert(rendererRef.has_value());
     this->renderer = rendererRef->get();
   }
   void SpriteRenderer::update(float deltaTime)

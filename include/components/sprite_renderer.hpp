@@ -9,9 +9,9 @@ namespace game
   class SpriteRenderer : public Component
   {
     public: 
-      glm::vec2 spriteSize = glm::vec2(10.0f, 10.0f);
+      glm::vec2 spriteSize = glm::vec2(40.0f, 40.0f);
       glm::vec4 spriteColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-      SpriteRenderer(game::Entity& parent);
+      SpriteRenderer();
       ~SpriteRenderer();
 
       void DrawSprite(game::Renderer* renderer); 
