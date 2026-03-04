@@ -12,7 +12,7 @@ namespace game
       float rotation = 0.0f;
       glm::mat4 getModel();
       glm::mat4 getModel(glm::vec2 size);
-      Transform2D(game::Entity& parent);
+      Transform2D();
       template <class Archive>
         void serialize(Archive& archive)
         {
