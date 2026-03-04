@@ -16,8 +16,6 @@ namespace game{
       ~Component();
     protected:
       Component();
-      utils::GenVectorHandle updateHandle;
-      Renderer* renderer;
       friend class cereal::access;
   };
 };

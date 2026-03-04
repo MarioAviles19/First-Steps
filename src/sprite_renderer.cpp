@@ -12,11 +12,6 @@ namespace game{
   SpriteRenderer::SpriteRenderer(game::Entity& parent) : Component(), shader(Shader("shaders/vertex.glsl", "shaders/fragment.glsl"))
   {
     this->initRenderData();
-    auto& resourceManager = ResourceManager::GetInstance();
-    auto renderer = resourceManager.GetResource<Renderer>();
-    assert(renderer.has_value() && "Resource not registered <Renderer>");
-    this->renderer = renderer->get();
-    this->updateHandle = this->renderer->addUpdater([this](float dTime){this->DrawSprite(glm::vec4(0.5f, 0.0f, 0.5f, 1.0f));});
   }
   void SpriteRenderer::setShader(Shader& shader)
   {
@@ -28,16 +23,16 @@ namespace game{
     glDeleteVertexArrays(1, &this->quadVAO);
   }
 
-  void SpriteRenderer::DrawSprite(glm::vec4 color)
+  void SpriteRenderer::DrawSprite(game::Renderer* renderer)
   {
     //prepare transforms
     this->shader.use();
     //orthographic projection for 2D
-    this->shader.setMatrix4("projection", this->renderer->orthoProjection);
+    this->shader.setMatrix4("projection", renderer->orthoProjection);
     glm::mat4 model = this->entity->transform->getModel(this->spriteSize);
     this->shader.setMatrix4("model", model);
 
-    this->shader.setVector3f("spriteColor", glm::vec3(color.x, color.y, color.z));
+    this->shader.setVector3f("spriteColor", glm::vec3(spriteColor.x, spriteColor.y, spriteColor.z));
 
     glBindVertexArray(this->quadVAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -71,9 +66,14 @@ namespace game{
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
   }
+  void SpriteRenderer::start()
+  {
+    auto rendererRef = ResourceManager::GetInstance().GetResource<game::Renderer>();
+    this->renderer = rendererRef->get();
+  }
   void SpriteRenderer::update(float deltaTime)
   {
-    this->DrawSprite(glm::vec4(0.5f, 0.0f, 0.5f, 1.0f));
+    this->DrawSprite(renderer);
   }
   bool SpriteRenderer::getEnabled() const
   {

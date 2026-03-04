@@ -1,6 +1,7 @@
 #pragma once
 #include "cereal/cereal.hpp"
 #include "shader.hpp"
+#include "program.hpp"
 #include "component.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 namespace game
@@ -13,14 +14,17 @@ namespace game
       SpriteRenderer(game::Entity& parent);
       ~SpriteRenderer();
 
-      void DrawSprite(glm::vec4 color); 
+      void DrawSprite(game::Renderer* renderer); 
       void setShader(Shader& shader);
     private:
+      friend class game::Program;
       Shader shader;
       unsigned int quadVAO;
-      void update(float deltaTime) ;
+      void update(float deltaTime);
+      void start();
       bool getEnabled() const ;
       void initRenderData();
+      game::Renderer* renderer;
       template <class Archive>
         void serialize(Archive& archive)
         {
