@@ -20,8 +20,6 @@ namespace game{
           static_cast<float>(this->window->height), 0.0f, -1.0f, 1.0f);
 
 
-      glfwSwapBuffers(this->window->glfwWindow);
-      glfwPollEvents();
     
   }
   utils::GenVectorHandle Renderer::addUpdater(renderLoopCallback updater)
