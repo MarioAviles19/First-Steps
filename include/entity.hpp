@@ -4,6 +4,7 @@
 #include "cereal/cereal.hpp"
 #include "component.hpp"
 #include "components/transform_2D.hpp"
+#include "program.hpp"
 #include <memory>
 #include <vector>
 
@@ -19,8 +20,10 @@ namespace game{
         requires std::derived_from<T, game::Component>
         T& addComponent()
         {
-          auto& ptr = components.emplace_back(std::make_unique<T>(*this));
-          return static_cast<T&>(*ptr);
+          auto comp = std::make_unique<T>();
+          comp->entity = this;
+          components.push_back(std::move(comp));
+          return static_cast<T&>(*components.at(components.size() - 1));
         }
    template <class Archive>
         void serialize(Archive& archive)
@@ -31,6 +34,7 @@ namespace game{
       //TODO: add removeComponent function
     private:
       friend class cereal::access;
+      friend class game::Program;
          std::vector<std::unique_ptr<game::Component>> components;
   };
 };
