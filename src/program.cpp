@@ -53,7 +53,7 @@ namespace game
       float deltaTime = currentTime - lastTime;
       lastTime = currentTime;
 
-      //renderer clears the screen and swaps buffers
+      //renderer clears the screen 
       this->renderer->render(deltaTime);
 
 
