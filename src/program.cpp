@@ -29,7 +29,8 @@ namespace game
 
     
     SpriteRenderer& renderer1 = cube->addComponent<SpriteRenderer>(); 
-    renderer1.spriteSize = glm::vec2(100.0f, 10.0f);
+    renderer1.spriteSize = glm::vec2(50.0f, 50.0f);
+    renderer1.spriteColor = glm::vec4(0.4f, 0.0f, 0.5f, 1.0f);
     entitiesForTesting.push_back(std::move(cube));
 
     glfwSetKeyCallback(this->renderer->window->glfwWindow, game::Input::glfwKeyCallback);
@@ -50,6 +51,7 @@ namespace game
       float currentTime = glfwGetTime();
 
       float deltaTime = currentTime - lastTime;
+      lastTime = currentTime;
 
       //renderer clears the screen and swaps buffers
       this->renderer->render(deltaTime);
@@ -62,6 +64,24 @@ namespace game
           comp->update(deltaTime);
         }
       }
+      //Make sure input is working correctly
+      if(game::Input::getKey(GLFW_KEY_W))
+      {
+        entitiesForTesting[0]->transform->position.y -= 50.0f * deltaTime;
+      }
+      if(game::Input::getKey(GLFW_KEY_A))
+      {
+        entitiesForTesting[0]->transform->position.x -= 50.0f * deltaTime;
+      }
+      if(game::Input::getKey(GLFW_KEY_S))
+      {
+        entitiesForTesting[0]->transform->position.y += 50.0f * deltaTime;
+      }
+      if(game::Input::getKey(GLFW_KEY_D))
+      {
+        entitiesForTesting[0]->transform->position.x += 50.0f * deltaTime;
+      }
+      std::cout << deltaTime << std::endl;
       glfwSwapBuffers(this->renderer->window->glfwWindow);
       glfwPollEvents();
 
